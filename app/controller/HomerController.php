@@ -10,7 +10,7 @@ class HomerController implements ControllerInterface
 
     public function index()
     {
-         echo "aqui no index";
+        dd("aqui no index");
     }
 
     public function show(int $id): void

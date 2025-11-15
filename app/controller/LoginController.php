@@ -10,8 +10,7 @@ class LoginController implements  ControllerInterface
 
     public function index(): void
     {
-        // TODO: Implement index() method.
-    }
+        dd("chegou aqui no login");     }
 
     public function show(int $id): void
     {
@@ -25,7 +24,7 @@ class LoginController implements  ControllerInterface
 
     public function store(array $data): void
     {
-        dd("chegou aqui no login");    }
+           }
 
     public function edit(int $id): void
     {
