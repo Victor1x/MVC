@@ -7,9 +7,13 @@ use app\interfaces\ControllerInterface;
 class ProductController implements ControllerInterface
 {
 
-    public function index(): void
+    public function index(string $test): void
     {
-        // TODO: Implement index() method.
+        dd($test);
+    }
+    public function index2(string $test ,string $test2): void
+    {
+        dd($test , $test2);
     }
 
     public function create(): void

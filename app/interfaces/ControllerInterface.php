@@ -4,7 +4,7 @@ namespace app\interfaces;
 
 interface ControllerInterface
 {
-    public function index();
+    public function index(string $test);
 
     public function show(int $id);
 

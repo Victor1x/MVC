@@ -2,6 +2,8 @@
 
 namespace core\library;
 
+use core\exception\ControllerNotFoundExeption;
+
 class Router
 {
     protected array $routes = [];
@@ -11,6 +13,7 @@ class Router
 
     public function add(string $method, string $uri, array $route): void
     {
+//        dump($method, $uri);
         $this->routes[$method][$uri] = $route;
     }
 
@@ -35,24 +38,33 @@ class Router
             }
 
             //esse bloco de codigo pega as roda com paramentros
-            $pattern = str_replace("/", "\/", trim($uri)); // str_replace funcao do php para pega paga um testo s
-            if ($uri !== "/" && preg_match("/^($pattern)$/", trim(REQUEST_URI), $this->params)) {
+            $pattern = str_replace("/", "\/", trim($uri,"/")); // str_replace funcao do php para pega paga um testo s
+            if ($uri !== "/" && preg_match("/^$pattern$/", trim(REQUEST_URI,"/"), $this->params)) {
                 [$this->controller, $this->action] = $route;
                 unset($this->params[0]);
+//                dump($this->params);
                 break;
             }
         }
 
         if ($this->controller) {
-            return $this->handleController();
+            return $this->handleController(
+                $this->controller,
+                $this->action,
+                $this->params
+            );
         };
 
         return $this->handleNotFound();
     }
 
-    private function handleController()
+    private function handleController(string $controller, string $action ,array $params)
     {
-//        dd('temm controller');
+        if(!class_exists($controller) || !method_exists($controller, $action)) {
+            throw new ControllerNotFoundExeption("[$controller::$action] does not exist");
+        }
+        $controller = new $controller;
+        $controller->$action(...$params);
     }
 
     private function handleNotFound()
