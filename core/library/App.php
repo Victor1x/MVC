@@ -20,7 +20,7 @@ class App
     {
         Ignition::make()
             ->setTheme("dark")
-            ->shouldDisplayException(env("ENV") === "development") // se a variable de ambinete env for dev development o page de error nao vai apace
+            ->shouldDisplayException(env("ENV") === "development") // se a variable de ambinete env for dev development o page de errors nao vai apace
             ->register();
 
         return $this;
@@ -37,7 +37,7 @@ class App
     public function withEnvironmentVariables()
     {
         try {
-            $dotenv = Dotenv::createImmutable(dirname(__FILE__, 3));
+            $dotenv = Dotenv::createImmutable(BASE_PATH);
             $dotenv->load();
             return $this;
         } catch (\Throwable $th) {

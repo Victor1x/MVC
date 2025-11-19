@@ -9,8 +9,12 @@ class HomerController implements ControllerInterface
 {
     public function index(): void
     {
-//        dd(VIEW_PATH);
-        Templates::render("home");
+//       dd($_SERVER);
+
+        view("home", [
+
+            "title" => "Home",
+        ]);
     }
 
     public function show($id): void

@@ -2,7 +2,8 @@
 
 namespace core\library;
 
-use bootstrap\exception\ControllerNotFoundExeption;
+use core\controllers\ErrorController;
+use core\exception\ControllerNotFoundExeption;
 use DI\Container;
 
 class Router
@@ -78,7 +79,8 @@ class Router
 
     private function handleNotFound(): void
     {
-        dd('nao tem controller');
+//        dd(VIEW_PATH_CORE);
+        (new ErrorController)->notFound();
     }
 
 

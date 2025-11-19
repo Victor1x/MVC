@@ -1,11 +1,16 @@
 {
     "name": "victor/src.2",
     "version": "1.0.0",
+
   "autoload": {
     "psr-4": {
       "app\\": "app/",
       "core\\": "core/"
-    }
+    },
+    "files": [
+      "core/helpers/constants.php",
+      "core/helpers/functions.php"
+    ]
   }
 ,
       "require-dev": {

@@ -3,7 +3,7 @@
 namespace core\library;
 
 
-use bootstrap\exception\ViewNotFoundException;
+use core\exception\ViewNotFoundException;
 use League\Plates\Engine;
 
 class Templates
@@ -12,13 +12,14 @@ class Templates
     (
         string $view,
         array  $data = [],
+        string $path = VIEW_PATH
     )
     {
-        if (!file_exists(VIEW_PATH . "/" . $view . ".php")) {
-            throw new ViewNotFoundException("View not found: $view");
+        if (!file_exists( $path . "/" . $view . ".php")) {
+            throw new ViewNotFoundException("View not found: [$view]");
         }
 
-        $path = VIEW_PATH;
+//        $path = VIEW_PATH;
         $templates = new Engine($path);
 
         echo $templates->render($view, $data);
