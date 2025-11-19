@@ -2,7 +2,8 @@
 
 namespace core\library;
 
-use core\exception\ControllerNotFoundExeption;
+use bootstrap\exception\ControllerNotFoundExeption;
+use DI\Container;
 
 class Router
 {
@@ -10,6 +11,12 @@ class Router
     protected ?string $controller = null;
     protected string $action;
     protected array $params = [];
+
+
+    public function __construct(private Container $container)
+    {
+    }
+
 
     public function add(string $method, string $uri, array $route): void
     {
@@ -38,11 +45,10 @@ class Router
             }
 
             //esse bloco de codigo pega as roda com paramentros
-            $pattern = str_replace("/", "\/", trim($uri,"/")); // str_replace funcao do php para pega paga um testo s
-            if ($uri !== "/" && preg_match("/^$pattern$/", trim(REQUEST_URI,"/"), $this->params)) {
+            $pattern = str_replace("/", "\/", trim($uri, "/")); // str_replace funcao do php para pega paga um testo s
+            if ($uri !== "/" && preg_match("/^$pattern$/", trim(REQUEST_URI, "/"), $this->params)) {
                 [$this->controller, $this->action] = $route;
                 unset($this->params[0]);
-//                dump($this->params);
                 break;
             }
         }
@@ -58,16 +64,19 @@ class Router
         return $this->handleNotFound();
     }
 
-    private function handleController(string $controller, string $action ,array $params)
+    /**
+     * @throws ControllerNotFoundExeption
+     */
+    private function handleController(string $controller, string $action, array $params): void
     {
-        if(!class_exists($controller) || !method_exists($controller, $action)) {
+        if (!class_exists($controller) || !method_exists($controller, $action)) {
             throw new ControllerNotFoundExeption("[$controller::$action] does not exist");
         }
-        $controller = new $controller;
-        $controller->$action(...$params);
+        $controller = $this->container->get($controller);
+        $this->container->call([$controller, $action], [...$params]);
     }
 
-    private function handleNotFound()
+    private function handleNotFound(): void
     {
         dd('nao tem controller');
     }

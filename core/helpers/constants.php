@@ -6,3 +6,4 @@ define("REQUEST_URI", $_SERVER["REQUEST_URI"]);
 
 define("REQUEST_METHOD", $_SERVER["REQUEST_METHOD"]);
 
+define("VIEW_PATH", dirname(BASE_PATH,1)."/resources/views");

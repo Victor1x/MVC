@@ -1,6 +1,6 @@
 <?php
 
-namespace core\exception;
+namespace bootstrap\exception;
 
 class ControllerNotFoundExeption extends \Exception
 {

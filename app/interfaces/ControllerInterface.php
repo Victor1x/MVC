@@ -2,9 +2,11 @@
 
 namespace app\interfaces;
 
+use app\library\Email;
+
 interface ControllerInterface
 {
-    public function index(string $test);
+    public function index();
 
     public function show(int $id);
 

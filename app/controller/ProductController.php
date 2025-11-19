@@ -3,13 +3,14 @@
 namespace app\controller;
 
 use app\interfaces\ControllerInterface;
+use app\library\Email;
 
 class ProductController implements ControllerInterface
 {
 
-    public function index(string $test): void
+    public function index(): void
     {
-        dd($test);
+        dd('index ProductController');
     }
     public function index2(string $test ,string $test2): void
     {

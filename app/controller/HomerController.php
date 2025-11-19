@@ -3,17 +3,17 @@
 namespace app\controller;
 
 use app\interfaces\ControllerInterface;
+use core\library\Templates;
 
 class HomerController implements ControllerInterface
 {
-
-
-    public function index()
+    public function index(): void
     {
-        dd("aqui no index");
+//        dd(VIEW_PATH);
+        Templates::render("home");
     }
 
-    public function show(int $id): void
+    public function show($id): void
     {
         // TODO: Implement show() method.
     }

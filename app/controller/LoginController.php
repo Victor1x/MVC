@@ -4,13 +4,14 @@ namespace app\controller;
 
 use app\interfaces\ControllerInterface;
 
-class LoginController implements  ControllerInterface
+class LoginController implements ControllerInterface
 {
 
 
     public function index(): void
     {
-        dd("chegou aqui no login");     }
+        dump("Index LoginController");
+    }
 
     public function show(int $id): void
     {
@@ -24,7 +25,7 @@ class LoginController implements  ControllerInterface
 
     public function store(array $data): void
     {
-           }
+    }
 
     public function edit(int $id): void
     {
