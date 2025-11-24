@@ -21,10 +21,9 @@ class Router
 
     public function add(string $method, string $uri, array $route): void
     {
-//        dump($method, $uri);
         $this->routes[$method][$uri] = $route;
+//        dump($this->routes);
     }
-
 
     public function execute()
     {

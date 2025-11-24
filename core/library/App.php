@@ -45,5 +45,9 @@ class App
         }
     }
 
-
+    public function withTemplateEngine(string $engine)
+    {
+        setBind("templateEngine", $engine);
+        return $this;
+    }
 }

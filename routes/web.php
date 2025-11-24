@@ -6,8 +6,8 @@ use app\controller\ProductController;
 use core\library\Router;
 
 
-
-    $router = new Router($app->container);
+/** @var TYPE_NAME $app */
+$router = new Router($app->container);
     $router->add("GET","/", [HomerController::class, "index"] );
     $router->add("GET","/product", [ProductController::class, "index"] );
     $router->add("GET","/product/([a-z\-]+)", [ProductController::class, "index"] );

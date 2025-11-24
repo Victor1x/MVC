@@ -10,7 +10,11 @@ class LoginController implements ControllerInterface
 
     public function index(): void
     {
-        dump("Index LoginController");
+
+//        dump("Index LoginController");
+    view("login", [
+        "title" => "Login",
+    ]);
     }
 
     public function show(int $id): void
