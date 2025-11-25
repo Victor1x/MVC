@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Como o DocumentRoot já é a pasta "public", a base é só "/"
+RewriteBase /
+
+# Se o arquivo existir, entrega normal
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Se não existir arquivo/pasta, manda tudo pro index.php
+RewriteRule ^ index.php [L]

@@ -16,7 +16,7 @@ class App
         return new self;
     }
 
-    public function withErrorPage()
+    public function withErrorPage() //page de erro para dev igual do laravel
     {
         Ignition::make()
             ->setTheme("dark")
@@ -26,7 +26,7 @@ class App
         return $this;
     }
 
-    public function withContainer()
+    public function withContainer() //php-di
     {
         $builder = new ContainerBuilder();
         $this->container = $builder->build();
@@ -34,7 +34,7 @@ class App
         return $this;
     }
 
-    public function withEnvironmentVariables()
+    public function withEnvironmentVariables()// para o env
     {
         try {
             $dotenv = Dotenv::createImmutable(BASE_PATH);
@@ -45,7 +45,7 @@ class App
         }
     }
 
-    public function withTemplateEngine(string $engine)
+    public function withTemplateEngine(string $engine) // template
     {
         setBind("templateEngine", $engine);
         return $this;
