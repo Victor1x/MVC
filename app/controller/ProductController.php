@@ -10,11 +10,7 @@ class ProductController implements ControllerInterface
 
     public function index(): void
     {
-        dd('index ProductController');
-    }
-    public function index2(string $test ,string $test2): void
-    {
-        dd($test , $test2);
+     return ""
     }
 
     public function create(): void

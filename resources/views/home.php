@@ -34,6 +34,7 @@ $this->layout('masterTemplate', ['title' => $title]);
 
 </style>
 <?php $this->stop() ?>
+     <?= $this->insert('partials/header')?>
 
 
 <div class="div_teste">
